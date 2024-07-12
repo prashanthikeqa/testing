@@ -3,7 +3,7 @@ name: Generate E2E Test Automatic Report
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 17   MON" # every monday at 17
+    - cron: "0 17 * * MON" # every monday at 17
 
 jobs:
   test:
@@ -33,7 +33,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Run Test ignoring failures
-        run: mvn clean test -Dheadless=true
+        run: mvn clean test
         continue-on-error: true
       - name: Save Cucumber test results
         uses: actions/upload-artifact@v2
